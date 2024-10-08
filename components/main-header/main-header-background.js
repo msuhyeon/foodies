@@ -10,7 +10,7 @@ export default function MainHeaderBackground() {
               offset="0%"
               style={{ stopColor: "#59453c", stopOpacity: "1" }}
             />
-            <stop
+            <stop 
               offset="100%"
               style={{ stopColor: "#8f3a09", stopOpacity: "1" }}
             />
