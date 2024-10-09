@@ -8,6 +8,7 @@ export default function MealsDetail({ params }) {
   const meal = getMeal(params.slug);
 
   if (!meal) {
+    // 가장 가까이에 있는 not-found 컴포넌트를 호출
     notFound();
   }
 
