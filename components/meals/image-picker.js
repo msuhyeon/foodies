@@ -1,14 +1,28 @@
 "use client";
 
-import { useRef } from "react";
+import { useRef, useState } from "react";
 
 import classes from "./image-picker.module.css";
 
 export default function ImagePicker({ label, name }) {
+  const [pickedImage, setPickedImage] = useState();
   const imageInput = useRef();
 
   function handlePickClick() {
     imageInput.current.click();
+  }
+
+  function handleImageChange(event) {
+    const file = event.target.files[0];
+
+    if (!file) {
+      return;
+    }
+
+    const fileReader = new FileReader();
+
+    fileReader.onload = () => {};
+    fileReader.readAsDataURL(file);
   }
 
   return (
@@ -24,6 +38,8 @@ export default function ImagePicker({ label, name }) {
           accept="image/png, image/jpeg"
           name={name}
           ref={imageInput}
+          //   multiple:  여러개 파일 선택 허용 시 추가
+          onChange={handleImageChange}
         />
         <button
           className={classes.button}
