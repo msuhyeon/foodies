@@ -7,6 +7,7 @@ import Image from "next/image";
 
 // 마크업을 출력하고 고르는 과정을 처리하는 것
 export default function ImagePicker({ label, name }) {
+  // 선택된 이미지
   const [pickedImage, setPickedImage] = useState();
   const imageInput = useRef();
 
@@ -14,23 +15,33 @@ export default function ImagePicker({ label, name }) {
     imageInput.current.click();
   }
 
+  // input 이벤트에 변화가 생길 때 마다 동작
   function handleImageChange(event) {
+    // files 속성은 이 이벤트의 목적이 input 이기 때문에 존재함.
+    // file input 속성은 시스템 내부에서 그런 files의 성질을  가지고있음
+
+    // 사용자가 파일을 선택하면 event.target.files라는 배열 비슷한 데이터 안에 파일 정보들이 담김.
     const file = event.target.files[0];
 
-    // 유저가 파일을 선태가지 않은 경우
     if (!file) {
+      // 미리보기를 없애기 위함
       setPickedImage(null);
       return;
     }
 
+    // 파일을 브라우저에서 보려면 Data URL이라는 포맷으로 변환해야함
+    // FileReader: 파일을 읽어서 Data URL로 바꿔주는 것
     const fileReader = new FileReader();
 
     console.log("file->", file);
 
+    // 파일 읽기가 끝났을 때 실행될 함수
     fileReader.onload = () => {
+      // 읽기가 완료되면 fileReader.result에 파일의 Data URL이 저장됨
       setPickedImage(fileReader.result);
     };
 
+    // readAsDataURL: 파일을 Data URL로 변환하고 끝나면 위의 onload 함수 실행
     fileReader.readAsDataURL(file);
   }
 
