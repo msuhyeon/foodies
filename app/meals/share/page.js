@@ -1,5 +1,6 @@
 import ImagePicker from "@/components/meals/image-picker";
 import classes from "./page.module.css";
+import { shareMeal } from "@/lib/actions";
 
 export default function ShareMealPage() {
   return (
@@ -11,7 +12,9 @@ export default function ShareMealPage() {
         <p>Or any other meal you feel needs sharing!</p>
       </header>
       <main className={classes.main}>
-        <form className={classes.form}>
+        {/* 이 form이 제출되면 NextJS가 자동으로 요청을 생성하여 웹사이트를 제공하는
+        NextJS 서버로 보냄 -> action에 정의해둔 함수가 실행되고 -> form의 제출을 서버에서 제어함 === 함수는 서버에서 실행됨   */}
+        <form className={classes.form} action={shareMeal}>
           <div className={classes.row}>
             <p>
               <label htmlFor="name">Your name</label>
