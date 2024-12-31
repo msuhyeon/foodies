@@ -33,8 +33,6 @@ export default function ImagePicker({ label, name }) {
     // FileReader: 파일을 읽어서 Data URL로 바꿔주는 것
     const fileReader = new FileReader();
 
-    console.log("file->", file);
-
     // 파일 읽기가 끝났을 때 실행될 함수
     fileReader.onload = () => {
       // 읽기가 완료되면 fileReader.result에 파일의 Data URL이 저장됨
