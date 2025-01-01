@@ -1,12 +1,14 @@
 "use client";
 
 import { useRef, useState } from "react";
-
 import classes from "./image-picker.module.css";
 import Image from "next/image";
 
 // 마크업을 출력하고 고르는 과정을 처리하는 것
 export default function ImagePicker({ label, name }) {
+  console.log("label->", label);
+  console.log("name->", name);
+
   // 선택된 이미지
   const [pickedImage, setPickedImage] = useState();
   const imageInput = useRef();
@@ -22,8 +24,6 @@ export default function ImagePicker({ label, name }) {
 
     // 사용자가 파일을 선택하면 event.target.files라는 배열 비슷한 데이터 안에 파일 정보들이 담김.
     const file = event.target.files[0];
-
-    console.log("file: ", file);
 
     if (!file) {
       // 미리보기를 없애기 위함
