@@ -23,6 +23,8 @@ export default function ImagePicker({ label, name }) {
     // 사용자가 파일을 선택하면 event.target.files라는 배열 비슷한 데이터 안에 파일 정보들이 담김.
     const file = event.target.files[0];
 
+    console.log("file: ", file);
+
     if (!file) {
       // 미리보기를 없애기 위함
       setPickedImage(null);
@@ -63,9 +65,9 @@ export default function ImagePicker({ label, name }) {
           accept="image/png, image/jpeg"
           name={name}
           ref={imageInput}
-          //   multiple:  여러개 파일 선택 허용 시 추가
           onChange={handleImageChange}
           required
+          // multiple: 여러개 파일 선택 허용 시 추가
         />
         <button
           className={classes.button}
